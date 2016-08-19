@@ -1,4 +1,4 @@
-package org.JavaBasics;
+package org.javabasics;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

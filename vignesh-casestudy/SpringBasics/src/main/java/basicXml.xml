@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="setterbean" class="springBasics.Player">
+	<!-- Setter Injection -->
+		 <property name="water" value="1" />
+		
+		<!-- Constructor Injection -->
+		<constructor-arg value="Vignesh I am doing spring" type="java.lang.String"></constructor-arg>
+  
+	</bean>
+
+</beans>
