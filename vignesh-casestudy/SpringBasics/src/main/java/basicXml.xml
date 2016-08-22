@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="setterbean" class="springBasics.Player">
+	<bean id="setterbean" class="org.springbasics.Player">
 	<!-- Setter Injection -->
 		 <property name="water" value="1" />
 		

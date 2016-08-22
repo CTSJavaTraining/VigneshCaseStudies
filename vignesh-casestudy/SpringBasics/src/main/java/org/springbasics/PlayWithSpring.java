@@ -1,7 +1,6 @@
 package org.springbasics;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,12 +14,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PlayWithSpring {
 
-	private static Logger logger = Logger.getLogger(PlayWithSpring.class);
+	static Logger logger = Logger.getLogger(PlayWithSpring.class);
 
 	public static void main(String args[]) {
 
-		PropertyConfigurator
-				.configure("D:/Trialmevan/Brb-Spring-CaseStuday/SpringBasicsStudy/src/main/resources/log4j.properties");
+		//PropertyConfigurator.configure("src/log4j.properties");
 
 		ApplicationContext basicXml = new ClassPathXmlApplicationContext("basicXml.xml");
 		try {

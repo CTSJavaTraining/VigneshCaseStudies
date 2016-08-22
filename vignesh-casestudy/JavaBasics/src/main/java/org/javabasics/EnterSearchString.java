@@ -16,6 +16,7 @@ abstract class EnterSearchString extends GoogleUrl {
 	/**
 	 * Method to enter search String to be fetched
 	 */
+	@Override
 	public void search() {
 		logger.debug("search Method: " + gUrl + " now searches are " + searchString);
 	}

@@ -15,8 +15,9 @@ public class EvenOddPrinterTransaction {
 
 	public static void main(String args[]) throws NumberFormatException {
 
+		//PropertyConfigurator.configure("src/log4j.properties");
+		
 		final Logger logger = Logger.getLogger(EvenOddPrinterTransaction.class);
-
 
 		logger.info("---------------------Application Starts---------------------");
 

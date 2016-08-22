@@ -1,9 +1,10 @@
 package org.javabasics;
 
-import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import org.apache.log4j.Logger;
 
 /**
  * TRAINING DEMO-1 Main Class
@@ -48,6 +49,8 @@ public class AssignmentOne {
 
 		// Logger configuration and pointing log4j.properties ( which is to be
 		// placed under src folder or WEB_INF/classes in webapplication
+		
+		//PropertyConfigurator.configure("src/log4j.properties");
 		
 		logger.info("---------------------------------------------------######-----------------------------------");
 		logger.info("main Method: Application starts");
