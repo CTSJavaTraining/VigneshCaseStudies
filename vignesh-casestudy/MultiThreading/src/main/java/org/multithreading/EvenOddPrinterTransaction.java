@@ -9,19 +9,26 @@ import org.apache.log4j.Logger;
  * MAIN method loads log4j congifiguration files and starts thread for two
  * classes {@link EvenOddPrinterTransaction} and {@link oddPrinter}
  * 
- * Starting two threads Thread1 and Thread2. 
+ * Starting two threads Thread1 and Thread2.
  */
 public class EvenOddPrinterTransaction {
 
-	public static void main(String args[]) throws NumberFormatException {
+	private EvenOddPrinterTransaction() {
+	}
 
-		//PropertyConfigurator.configure("src/log4j.properties");
-		
+	/**
+	 * Runs tasks as even and odd printers
+	 * 
+	 * @param args
+	 * @throws NumberFormatException
+	 */
+	public static void main(String args[]) {
+
 		final Logger logger = Logger.getLogger(EvenOddPrinterTransaction.class);
 
 		logger.info("---------------------Application Starts---------------------");
 
-		List<Integer> numberStorage = new LinkedList<Integer>();
+		List<Integer> numberStorage = new LinkedList<>();
 		numberStorage.add(0);
 
 		EvenPrinter ePrinter = new EvenPrinter(numberStorage);

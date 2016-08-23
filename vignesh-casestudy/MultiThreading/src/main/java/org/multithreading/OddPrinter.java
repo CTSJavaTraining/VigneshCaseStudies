@@ -24,6 +24,7 @@ public class OddPrinter implements Runnable {
 		this.numberStorage = numberStorage;
 	}
 
+	@Override
 	public void run() {
 
 		transID.set(Double.toString(Math.random()));
@@ -48,6 +49,8 @@ public class OddPrinter implements Runnable {
 						numberStorage.wait();
 
 					} catch (InterruptedException e) {
+						// Rethrowing interrupt exception (Coding standard)
+						Thread.currentThread().interrupt();
 						logger.error(e);
 					}
 

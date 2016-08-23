@@ -7,9 +7,17 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Read data from DB
+ * @author VICKY BRB
+ *
+ */
 public class ReadFromTable {
 
-	static final Logger logger = Logger.getLogger(ReadFromTable.class);
+	private static final Logger logger = Logger.getLogger(ReadFromTable.class);
+
+	private ReadFromTable() {
+	}
 
 	protected static void selectFromDB(Connection conn) throws SQLException {
 		String getdata = "SELECT * FROM brbtable";

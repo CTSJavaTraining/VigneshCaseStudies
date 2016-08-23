@@ -6,9 +6,18 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Class to insert data into DB
+ * 
+ * @author VICKY BRB
+ *
+ */
 public class InsertIntoDB {
 
-	static final Logger logger = Logger.getLogger(InsertIntoDB.class);
+	private static final Logger logger = Logger.getLogger(InsertIntoDB.class);
+
+	private InsertIntoDB() {
+	}
 
 	protected static void insertor(Connection conn) throws SQLException {
 		// Inserting into DB using prepared statement
@@ -30,9 +39,9 @@ public class InsertIntoDB {
 			pstmt.setInt(5, 20000);
 			pstmt.setString(6, "Anasd nagar");
 			pstmt.setString(7, "28-Jul-1990");
-			
+
 			pstmt.execute();
-			
+
 			// Setting parameters to the prepared statement
 			pstmt.setInt(1, 2);
 			pstmt.setString(2, "B");
@@ -41,9 +50,9 @@ public class InsertIntoDB {
 			pstmt.setInt(5, 20002);
 			pstmt.setString(6, "Aassdasdnna nagar");
 			pstmt.setString(7, "08-Jul-1991");
-			
+
 			pstmt.execute();
-			
+
 			// Setting parameters to the prepared statement
 			pstmt.setInt(1, 3);
 			pstmt.setString(2, "C");

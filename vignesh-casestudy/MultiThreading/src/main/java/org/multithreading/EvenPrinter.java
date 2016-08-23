@@ -12,7 +12,7 @@ public class EvenPrinter implements Runnable {
 
 	private int num;
 
-	private static final ThreadLocal<String> transID = new ThreadLocal<String>();
+	private static final ThreadLocal<String> transID = new ThreadLocal<>();
 
 	private List<Integer> numberStorage;
 
@@ -20,6 +20,7 @@ public class EvenPrinter implements Runnable {
 		this.numberStorage = numberStorage;
 	}
 
+	@Override
 	public void run() {
 
 		transID.set(Double.toString(Math.random()));
@@ -44,7 +45,9 @@ public class EvenPrinter implements Runnable {
 						numberStorage.wait();
 
 					} catch (InterruptedException e) {
-						logger.error("", e);
+						// Rethrowing interrupt exception (Coding standard)
+						Thread.currentThread().interrupt();
+						logger.error(e);
 
 					}
 
