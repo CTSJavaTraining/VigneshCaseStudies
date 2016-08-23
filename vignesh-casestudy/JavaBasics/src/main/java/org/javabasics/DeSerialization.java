@@ -30,13 +30,19 @@ public class DeSerialization {
 	 * 
 	 */
 
-	public static void deserialize(String fileName) throws IOException, ClassNotFoundException {
+	public static void deserialize(String fileName) throws IOException {
 
 		logger.debug("deserialize method: Input fileName is " + fileName);
 
 		FileInputStream fis = new FileInputStream(fileName);
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		Employee objde = (Employee) ois.readObject();
+		Employee objde = null;
+
+		try {
+			objde = (Employee) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			logger.error(e);
+		}
 
 		ois.close();
 		fis.close();

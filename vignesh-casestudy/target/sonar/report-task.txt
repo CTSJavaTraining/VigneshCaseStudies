@@ -1,5 +1,0 @@
-projectKey=com.vignesh.casestudy:vignesh-casestudy
-serverUrl=http://10.242.133.153:9000
-dashboardUrl=http://10.242.133.153:9000/dashboard/index/com.vignesh.casestudy:vignesh-casestudy
-ceTaskId=AVaxdhHjYC6SaYG0xKyd
-ceTaskUrl=http://10.242.133.153:9000/api/ce/task?id=AVaxdhHjYC6SaYG0xKyd

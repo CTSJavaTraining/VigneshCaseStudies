@@ -12,13 +12,12 @@
 		<module>JDBCModule</module>
 		<module>SpringBasics</module>
 	</modules>
+
 	<properties>
 		<log4j.configuration>D:/Local
 			Repository/mycasestudies/vignesh-casestudy/log4j.properties</log4j.configuration>
-		<sonar.host.url>http://10.242.133.153:9000/</sonar.host.url>
+		<sonar.host.url>http://localhost:9000/</sonar.host.url>
 	</properties>
-
-
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -27,11 +26,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-
-
-
 	<dependencies>
-
 
 		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
@@ -49,6 +44,12 @@
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
 		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-core</artifactId> 

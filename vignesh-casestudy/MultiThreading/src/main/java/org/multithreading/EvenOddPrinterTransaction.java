@@ -24,10 +24,10 @@ public class EvenOddPrinterTransaction {
 		List<Integer> numberStorage = new LinkedList<Integer>();
 		numberStorage.add(0);
 
-		evenPrinter ePrinter = new evenPrinter(numberStorage);
+		EvenPrinter ePrinter = new EvenPrinter(numberStorage);
 		Thread firstThread = new Thread(ePrinter);
 
-		oddPrinter oPrinter = new oddPrinter(numberStorage);
+		OddPrinter oPrinter = new OddPrinter(numberStorage);
 		Thread secondThread = new Thread(oPrinter);
 
 		firstThread.setName("Thread1");

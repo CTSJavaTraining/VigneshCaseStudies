@@ -1,19 +1,26 @@
 package org.multithreading;
 
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
-public class evenPrinter implements Runnable {
+/**
+ * Odd printer prints only odd numbers as task
+ * 
+ * @author 447482
+ *
+ */
+public class OddPrinter implements Runnable {
 
-	static Logger logger = Logger.getLogger(evenPrinter.class);
+	static Logger logger = Logger.getLogger(OddPrinter.class);
 
 	private int num;
-	
-	private static final ThreadLocal<String> transID = new ThreadLocal<String>();
 
 	private List<Integer> numberStorage;
 
-	evenPrinter(List<Integer> numberStorage) {
+	private static final ThreadLocal<String> transID = new ThreadLocal<String>();
+
+	OddPrinter(List<Integer> numberStorage) {
 		this.numberStorage = numberStorage;
 	}
 
@@ -21,10 +28,9 @@ public class evenPrinter implements Runnable {
 
 		transID.set(Double.toString(Math.random()));
 
-		logger.info("Thread evenPrinter");
-		// TODO Auto-generated method stub
+		logger.info("Thread oddPrinter");
 
-		logger.debug("Buyer running");
+		logger.debug("Seller running");
 
 		while (num <= 10) {
 
@@ -32,18 +38,17 @@ public class evenPrinter implements Runnable {
 
 			synchronized (numberStorage) {
 
-				if (num % 2 == 0 && num <= 10) {
+				if (num % 2 != 0 && num <= 10) {
 
 					logger.debug("Transaction ID is " + transID.get() + " " + Thread.currentThread().getName()
-							+ " Number is Even " + num);
+							+ " Number is Odd " + num);
 
 					try {
 
 						numberStorage.wait();
 
 					} catch (InterruptedException e) {
-						logger.error("",e);
-						
+						logger.error(e);
 					}
 
 					num++;
@@ -56,7 +61,6 @@ public class evenPrinter implements Runnable {
 
 					numberStorage.notify();
 				}
-
 			}
 		}
 		transID.remove();

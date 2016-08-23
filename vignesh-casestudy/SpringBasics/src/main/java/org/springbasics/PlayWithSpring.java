@@ -13,12 +13,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class PlayWithSpring {
-
+	
 	static Logger logger = Logger.getLogger(PlayWithSpring.class);
 
 	public static void main(String args[]) {
-
-		//PropertyConfigurator.configure("src/log4j.properties");
 
 		ApplicationContext basicXml = new ClassPathXmlApplicationContext("basicXml.xml");
 		try {

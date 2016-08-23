@@ -10,14 +10,10 @@ abstract class EnterSearchString extends GoogleUrl {
 	EnterSearchString(String gUrl, String searchString) {
 		super(gUrl);
 		this.searchString = searchString;
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Method to enter search String to be fetched
-	 */
 	@Override
-	public void search() {
+	public void sSearch() {
 		logger.debug("search Method: " + gUrl + " now searches are " + searchString);
 	}
 }

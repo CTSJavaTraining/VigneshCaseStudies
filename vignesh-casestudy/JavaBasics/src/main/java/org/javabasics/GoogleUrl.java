@@ -16,10 +16,8 @@ abstract class GoogleUrl implements InterfaceAbstractDemo {
 		this.gUrl = gUrl;
 	}
 
-	/**
-	 * Method to open URL. Example: Google.com
-	 */
-	public void open() {
+	@Override
+	public void uOpen() {
 		logger.debug("open Method: URL given and website opens " + gUrl);
 	}
 

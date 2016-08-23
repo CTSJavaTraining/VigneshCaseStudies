@@ -8,10 +8,19 @@ package org.javabasics;
  */
 public interface InterfaceAbstractDemo {
 
-	void open();
+	/**
+	 * Opens URL
+	 */
+	void uOpen();
 
-	void search();
+	/**
+	 * Searches for a string using url
+	 */
+	void sSearch();
 
-	void fetch();
+	/**
+	 * Fetches data from DB (Just a check for interface and abstract Demo)
+	 */
+	void dFetch();
 
 }

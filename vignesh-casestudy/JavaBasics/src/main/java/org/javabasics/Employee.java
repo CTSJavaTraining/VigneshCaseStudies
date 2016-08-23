@@ -15,7 +15,6 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	// TODO:Access modifier
 	private static String name;
 	private int id;
 	private transient int salary;

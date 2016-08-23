@@ -38,19 +38,15 @@ public class AssignmentOne {
 	private static Logger logger = Logger.getLogger(AssignmentOne.class);
 
 	static {
-		System.out.println("Static Block Called");
-		System.out.println("NOTE:Logger is not working in static block. It throws warning");
+		logger.info("Static block called");
 	}
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException,
-			IllegalArgumentException, NoSuchMethodException, SecurityException, InvocationTargetException {
+			NoSuchMethodException, SecurityException, InvocationTargetException {
 
-		// TODO Auto-generated method stub
 
 		// Logger configuration and pointing log4j.properties ( which is to be
 		// placed under src folder or WEB_INF/classes in webapplication
-		
-		//PropertyConfigurator.configure("src/log4j.properties");
 		
 		logger.info("---------------------------------------------------######-----------------------------------");
 		logger.info("main Method: Application starts");
@@ -91,9 +87,9 @@ public class AssignmentOne {
 			// 5:Constructor Chaining
 			InterfaceAbstractDemo interfaceDemoObject = new FetchSearchString("www.google.com", "Cognizant MEPZ");
 
-			interfaceDemoObject.open();
-			interfaceDemoObject.search();
-			interfaceDemoObject.fetch();
+			interfaceDemoObject.uOpen();
+			interfaceDemoObject.sSearch();
+			interfaceDemoObject.dFetch();
 
 			// String literals and wrapper class
 			StringLiteralsAndWrapper validateObj = new StringLiteralsAndWrapper();
