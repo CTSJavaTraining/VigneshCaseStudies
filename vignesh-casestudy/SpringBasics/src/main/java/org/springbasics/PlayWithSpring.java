@@ -13,10 +13,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class PlayWithSpring {
-	
-	static Logger logger = Logger.getLogger(PlayWithSpring.class);
 
-	public static void main(String args[]) {
+	private static final Logger logger = Logger.getLogger(PlayWithSpring.class);
+
+	private PlayWithSpring() {
+
+	}
+
+	public static void main(String[] args) {
 
 		ApplicationContext basicXml = new ClassPathXmlApplicationContext("basicXml.xml");
 		try {

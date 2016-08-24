@@ -7,7 +7,6 @@ package org.springbasics;
  */
 public class Player {
 
-	// TO-DO access modifiers
 	private String ground;
 	private int water = 0;
 

@@ -37,17 +37,20 @@ public class AssignmentOne {
 
 	private static Logger logger = Logger.getLogger(AssignmentOne.class);
 
+	private AssignmentOne() {
+
+	}
+
 	static {
 		logger.info("Static block called");
 	}
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException,
-			NoSuchMethodException, SecurityException, InvocationTargetException {
-
+			NoSuchMethodException, InvocationTargetException {
 
 		// Logger configuration and pointing log4j.properties ( which is to be
 		// placed under src folder or WEB_INF/classes in webapplication
-		
+
 		logger.info("---------------------------------------------------######-----------------------------------");
 		logger.info("main Method: Application starts");
 

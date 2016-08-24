@@ -22,7 +22,7 @@ public class EvenOddPrinterTransaction {
 	 * @param args
 	 * @throws NumberFormatException
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		final Logger logger = Logger.getLogger(EvenOddPrinterTransaction.class);
 

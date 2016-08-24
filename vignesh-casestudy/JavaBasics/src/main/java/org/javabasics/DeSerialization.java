@@ -6,7 +6,17 @@ import java.io.ObjectInputStream;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Deserialing object
+ * 
+ * @author 447482
+ *
+ */
 public class DeSerialization {
+
+	private DeSerialization() {
+
+	}
 
 	private static Logger logger = Logger.getLogger(DeSerialization.class);
 

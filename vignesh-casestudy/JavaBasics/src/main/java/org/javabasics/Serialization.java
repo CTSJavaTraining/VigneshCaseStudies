@@ -6,7 +6,16 @@ import java.io.ObjectOutputStream;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Serializing class
+ * @author 447482
+ *
+ */
 public class Serialization {
+	
+	private Serialization(){
+		
+	}
 	
 	private static Logger logger = Logger.getLogger(Serialization.class);
 	/**
