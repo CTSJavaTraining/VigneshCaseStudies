@@ -1,4 +1,4 @@
-package org.jdbcmodule;
+package org.training.jdbcmodule;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

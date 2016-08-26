@@ -1,4 +1,4 @@
-package org.javabasics;
+package org.training.javabasics;
 
 /**
  * Created Interface with open, search and fetch methods which is implemented in

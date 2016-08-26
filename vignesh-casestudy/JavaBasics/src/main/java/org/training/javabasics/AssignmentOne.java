@@ -1,4 +1,4 @@
-package org.javabasics;
+package org.training.javabasics;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

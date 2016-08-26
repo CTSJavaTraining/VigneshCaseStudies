@@ -1,4 +1,4 @@
-package org.springbasics;
+package org.training.springbasics;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;

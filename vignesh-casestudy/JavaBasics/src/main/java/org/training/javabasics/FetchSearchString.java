@@ -1,4 +1,4 @@
-package org.javabasics;
+package org.training.javabasics;
 
 /**
  * Fetches information from Database. NOTE: DataBase is not yet set.

@@ -1,4 +1,4 @@
-package org.springbasics;
+package org.training.springbasics;
 
 /**
  * POJO class to return ground name using constructor injection and return int

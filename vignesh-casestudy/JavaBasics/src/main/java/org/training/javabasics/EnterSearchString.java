@@ -1,4 +1,4 @@
-package org.javabasics;
+package org.training.javabasics;
 
 /**
  * This is an abstract class extended from GoogleUrl class

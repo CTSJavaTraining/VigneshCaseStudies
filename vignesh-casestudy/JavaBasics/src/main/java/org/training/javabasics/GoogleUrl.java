@@ -1,4 +1,4 @@
-package org.javabasics;
+package org.training.javabasics;
 
 import org.apache.log4j.Logger;
 

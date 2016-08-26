@@ -1,4 +1,4 @@
-package org.multithreading;
+package org.training.multithreading;
 
 import java.util.List;
 import org.apache.log4j.Logger;
