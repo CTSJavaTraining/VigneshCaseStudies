@@ -39,10 +39,8 @@ public class CollectionsAnalyser {
 	public static void dataStore() {
 
 		List<Object> employeeList = new LinkedList<>();
-	
-		employeeList.add(new EmployeeDetails("A", "12-12-1992", 20000));
-		employeeList.add(new EmployeeDetails("C", "12-11-1992", 40000));
-		employeeList.add(new EmployeeDetails("B", "12-10-1992", 30000));
+		employeeList.add("1");
+
 		
 		
 		

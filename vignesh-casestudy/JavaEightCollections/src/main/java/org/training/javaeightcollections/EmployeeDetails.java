@@ -8,32 +8,33 @@ package org.training.javaeightcollections;
  */
 public class EmployeeDetails {
 
-	private static String employeeName;
-	private static String employeeDOJ;
-	private static int employeeSal;
+	private String employeeName;
+	private String employeeDOJ;
+	private int employeeSal;
 
-	/**
-	 * Constructor to set employee name, doj and salary
-	 * 
-	 * @param employeeName
-	 * @param employeeDOJ
-	 * @param employeeSal
-	 */
-	protected EmployeeDetails(String employeeName, String employeeDOJ, int employeeSal) {
-		EmployeeDetails.employeeName = employeeName;
-		EmployeeDetails.employeeDOJ = employeeDOJ;
-		EmployeeDetails.employeeSal = employeeSal;
+	//Setter and getters
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
-	public static String getEmployeeName() {
+	public String getEmployeeName() {
 		return employeeName;
 	}
 
-	public static String getEmployeeDOJ() {
+	public void setEmployeeDOJ(String employeeDOJ) {
+		this.employeeDOJ = employeeDOJ;
+	}
+
+	public String getEmployeeDOJ() {
 		return employeeDOJ;
 	}
 
-	public static int getEmployeeSal() {
+	public void setEmployeeSal(int employeeSal) {
+		this.employeeSal = employeeSal;
+	}
+
+	public int getEmployeeSal() {
 		return employeeSal;
 	}
 
