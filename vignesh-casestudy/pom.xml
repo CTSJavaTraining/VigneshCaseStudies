@@ -12,7 +12,7 @@
 		<module>JDBCModule</module>
 		<module>SpringBasics</module>
 		<module>JavaEightCollections</module>
-		<module>OrmApplication</module>
+		<module>MiniProject</module>
 	</modules>
 
 	<properties>
