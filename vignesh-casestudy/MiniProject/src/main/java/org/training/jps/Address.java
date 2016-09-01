@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -14,23 +16,25 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "address")
+@Table(name = "address1")
 public class Address {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "addressid")
 	private int addressid;
 
-	@Column(name = "id")
-	private int foreignId;
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Employee foreignId;
 
-	@Column(name = "doorno")
+	@Column(name = "doorno", length = 4)
 	private int doorno;
 
-	@Column(name = "streetname")
+	@Column(name = "streetname", length = 50)
 	private String streetname;
 
-	@Column(name = "state")
+	@Column(name = "state", length = 25)
 	private String state;
 
 	/**
@@ -51,7 +55,7 @@ public class Address {
 	/**
 	 * @return the foreignId
 	 */
-	public int getForeignId() {
+	public Employee getForeignId() {
 		return foreignId;
 	}
 
@@ -59,7 +63,7 @@ public class Address {
 	 * @param foreignId
 	 *            the foreignId to set
 	 */
-	public void setForeignId(int foreignId) {
+	public void setForeignId(Employee foreignId) {
 		this.foreignId = foreignId;
 	}
 

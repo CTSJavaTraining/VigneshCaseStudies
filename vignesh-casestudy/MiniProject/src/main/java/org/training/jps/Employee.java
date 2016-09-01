@@ -8,10 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 /**
  * Employee POJO class
@@ -20,13 +18,13 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "employee")
+@Table(name = "employee1")
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private int id;
+	private int employeeId;
 
 	@Column(name = "name", length = 35)
 	private String name;
@@ -34,39 +32,37 @@ public class Employee {
 	@Column(name = "designation", length = 20)
 	private String designation;
 
-	@Column(name = "salary")
+	@Column(name = "salary", length = 10)
 	private int salary;
 
-	@Column(name = "bonus")
+	@Column(name = "bonus", length = 10)
 	private int bonus;
 
-	
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="id", referencedColumnName="id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "foreignId")
 	private List<Address> address;
 
-	@Column(name = "doj")
+	@Column(name = "doj", length = 12)
 	private String doj;
 
-	@Column(name = "grade")
+	@Column(name = "grade", length = 1)
 	private String grade;
 
-	@Column(name = "emailid", unique = true)
+	@Column(name = "emailid", unique = true, length = 40)
 	private String emailid;
 
 	/**
-	 * @return the id
+	 * @return the employeeId
 	 */
-	public int getId() {
-		return id;
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param employeeId
+	 *            the employeeId to set
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	/**
