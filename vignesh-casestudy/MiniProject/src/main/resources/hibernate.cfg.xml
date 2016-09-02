@@ -21,7 +21,7 @@
 		<property name="hibernate.connection.password">
 			CDPff123
 		</property>
-		<property name="hibernate.hbm2ddl.auto">validate</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="format_sql">true</property>
 		<property name="use_sql_comments">true</property>

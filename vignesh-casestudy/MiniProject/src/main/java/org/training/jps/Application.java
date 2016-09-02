@@ -1,8 +1,5 @@
 package org.training.jps;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +7,9 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Main class for check set and get method of employee and address
@@ -34,68 +34,48 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 
 		logger.info("----------------Application begins-------------------");
-		
+
 		insertorUsingSetter();
 
 	}
 
 	public static void insertorUsingSetter() {
-		
-		try (Session session = factory.openSession()) {
 
+		System.out.println(
+				"*****************************************************************************************************************************************************");
+		ApplicationContext contextXml = new ClassPathXmlApplicationContext("applicationContext.xml");
+		try (Session session = factory.openSession()) {
+			
+			AOPTester aopT=new AOPTester();
+			aopT.addPerson();
+			
 			Transaction tx = session.beginTransaction();
 
-			Employee emp1 = new Employee();
+			Employee emp1 = (Employee) contextXml.getBean("insertIntoEmployee");
+			Address address1 = (Address) contextXml.getBean("insertIntoAddress1");
+			Address address2 = (Address) contextXml.getBean("insertIntoAddress2");
 
-			logger.info("----------------Connecting to DB and inserting values----------------");
-
-			emp1.setName("Vignessh");
-			emp1.setDesignation("PA");
-			emp1.setSalary(20000);
-			emp1.setBonus(2000);
-			emp1.setDoj("July 31");
-			emp1.setGrade("A");
-			emp1.setemailid("mytbrb@gmail.com");
-
-			Address address1 = new Address();
-
-			logger.info("Adding address values");
-
-			address1.setDoorno(9);
-			address1.setState("TN");
-			address1.setStreetname("Test Street");
 			address1.setForeignId(emp1);
 
-			Address address2 = new Address();
-
-			address2.setDoorno(12);
-			address2.setState("KL");
-			address2.setStreetname("Test2 Street");
 			address2.setForeignId(emp1);
 
-			Address address3 = new Address();
-
-			address3.setDoorno(13);
-			address3.setState("KL");
-			address3.setStreetname("Test2 Street");
-			address3.setForeignId(emp1);
-
-			List<Address> addresslist = new ArrayList<>();
-			addresslist.add(address1);
-			addresslist.add(address2);
-			addresslist.add(address3);
-
-			logger.debug("Address set");
-			emp1.setAddress(addresslist);
-
-			logger.debug("address set inside employee");
-
 			session.persist(emp1);
-			logger.debug("session saved");
+			session.persist(address1);
+			session.persist(address2);
+
 			tx.commit();
-			logger.debug("Commited");
+
+			/*
+			 * System.out.println(emp1.getName());
+			 * System.out.println(emp1.getBonus());
+			 * 
+			 * System.out.println("Name : " + emp1.getName());
+			 */
+
 		} catch (Exception e) {
 			logger.error("Exception in main" + e);
+		} finally {
+			((AbstractApplicationContext) contextXml).close();
 		}
 
 	}

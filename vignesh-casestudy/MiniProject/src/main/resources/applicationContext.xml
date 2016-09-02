@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+	http://www.springframework.org/schema/beans/spring-beans.xsd   
+       http://www.springframework.org/schema/aop   
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<bean id="insertIntoEmployee" class="org.training.jps.Employee">
+		<!-- Setter Injection -->
+		<property name="bonus" value="6000" />
+		<property name="designation" value="SA" />
+		<property name="doj" value="30-April" />
+		<property name="emailid" value="KKR@gmail.com" />
+		<property name="grade" value="A" />
+		<property name="name" value="TESTER SPRING" />
+		<property name="salary" value="35000" />
+
+		<!-- Constructor Injection -->
+		<!-- <constructor-arg value="Vignesh I am doing spring" type="java.lang.String"></constructor-arg> -->
+	</bean>
+
+	<bean id="insertIntoAddress1" class="org.training.jps.Address">
+		<!-- Setter Injection -->
+		<property name="doorno" value="11" />
+		<property name="streetname" value="First Spring Street" />
+		<property name="state" value="First TN" />
+
+		<!-- Constructor Injection -->
+		<!-- <constructor-arg value="Vignesh I am doing spring" type="java.lang.String"></constructor-arg> -->
+	</bean>
+
+	<bean id="insertIntoAddress2" class="org.training.jps.Address">
+		<!-- Setter Injection -->
+		<property name="doorno" value="12" />
+		<property name="streetname" value="Second Spring Street" />
+		<property name="state" value="Second TN" />
+
+		<!-- Constructor Injection -->
+		<!-- <constructor-arg value="Vignesh I am doing spring" type="java.lang.String"></constructor-arg> -->
+	</bean>
+
+	<bean id="LoggingAOP" class="org.training.jps.AOPLogging"></bean>
+
+</beans>

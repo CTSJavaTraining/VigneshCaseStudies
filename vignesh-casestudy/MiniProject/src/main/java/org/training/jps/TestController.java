@@ -1,6 +1,5 @@
 package org.training.jps;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -8,15 +7,16 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Test Controller
  * 
@@ -32,10 +32,11 @@ public class TestController {
 	private static final Logger logger = Logger.getLogger(TestController.class);
 
 	Employee emp2 = new Employee();
+	String firstTag = "<br>";
 
-	@RequestMapping(name = "selectEmployee", path = "/getEmployee", method = org.springframework.web.bind.annotation.RequestMethod.GET, produces = "text/plain")
+	@RequestMapping(name = "selectEmployee", value = "/getEmployee", method = RequestMethod.GET, produces = "text/html")
 	@ResponseBody
-	public List<Employee> getEmployeeById(@RequestParam("id") int id) {
+	public String getEmployeeById(@RequestParam("id") int id) {
 
 		try (Session session = factory.openSession()) {
 
@@ -46,17 +47,20 @@ public class TestController {
 			@SuppressWarnings("unchecked")
 			List<Employee> employeeResults = query.getResultList();
 
+			StringBuilder sbEmployee = new StringBuilder();
+			employeeResults.forEach(employeeValue -> sbEmployee.append(employeeValue.getName()).append(firstTag));
+
 			logger.debug("Getting Employee by using ID");
-			// return "<h1>Enter ID: to fetch employee details</h1><h2>Employee
-			// Details are/is </h2><hr>"
-			return employeeResults;
+
+			return sbEmployee.toString();
+
 		}
 
 	}
 
-	@RequestMapping(name = "selectAddress", path = "/getAddress", method = org.springframework.web.bind.annotation.RequestMethod.GET, produces = "text/plain")
+	@RequestMapping(name = "selectAddress", value = "/getAddress", method = RequestMethod.GET, produces = "text/html")
 	@ResponseBody
-	public List<Address> getAddressById(@RequestParam("id") int id) {
+	public String getAddressById(@RequestParam("id") int id) {
 
 		try (Session session = factory.openSession()) {
 
@@ -69,55 +73,71 @@ public class TestController {
 
 			logger.debug("Getting Address by using ID");
 
-			// return "<h1>Enter ID: to fetch address details</h1><h2>Address
-			// Details are/is </h2><hr>"
-			return addressResults;
+			StringBuilder sbAddress = new StringBuilder();
+
+			addressResults.forEach(addressType -> sbAddress.append(addressType.getDoorno()).append(firstTag)
+					.append(addressType.getState()).append(firstTag).append(addressType.getStreetname())
+					.append(firstTag).append(addressType.getState()));
+
+			return sbAddress.toString();
 		}
 
 	}
 
-	@RequestMapping(name = "insertEmployee", path = "/putEmployee", method = org.springframework.web.bind.annotation.RequestMethod.POST, produces = "text/html")
+	@RequestMapping(value = "/putemployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String setEmployeeDetails(@RequestParam("employeeId") int employeeId, @RequestParam("bonus") int bonus,
-			@RequestParam("designation") String designation, @RequestParam("doj") String doj,
-			@RequestParam("emailid") String emailid, @RequestParam("grade") String grade,
-			@RequestParam("name") String name, @RequestParam("salary") int salary, @RequestParam("doorno") int doorno,
-			@RequestParam("streetname") String streetname, @RequestParam("state") String state)
+	public String setEmployeeDetails(@RequestBody Employee e)
+	/*
+	 * @RequestParam("employeeId") int employeeId, @RequestParam("bonus") int
+	 * bonus,
+	 * 
+	 * @RequestParam("designation") String designation, @RequestParam("doj")
+	 * String doj,
+	 * 
+	 * @RequestParam("emailid") String emailid, @RequestParam("grade") String
+	 * grade,
+	 * 
+	 * @RequestParam("name") String name, @RequestParam("salary") int
+	 * salary, @RequestParam("doorno") int doorno,
+	 * 
+	 * @RequestParam("streetname") String streetname, @RequestParam("state")
+	 * String state
+	 */
 
 	{
 
-		try (Session session = factory.openSession()) {
-			Transaction tx = session.beginTransaction();
+		System.out.println("Setting employee Details");
+		System.out.println(" EEE :: " + e.toString());
 
-			Employee employeeInsert = new Employee();
-
-			employeeInsert.setName(name);
-			employeeInsert.setemailid(emailid);
-			employeeInsert.setBonus(bonus);
-			employeeInsert.setDesignation(designation);
-			employeeInsert.setDoj(doj);
-			employeeInsert.setEmployeeId(employeeId);
-			employeeInsert.setGrade(grade);
-			employeeInsert.setSalary(salary);
-
-			Address addressInsert = new Address();
-
-			addressInsert.setDoorno(doorno);
-			addressInsert.setState(state);
-			addressInsert.setStreetname(streetname);
-
-			List<Address> addressInsertList = new ArrayList<>();
-			employeeInsert.setAddress(addressInsertList);
-
-			session.persist(employeeInsert);
-			tx.commit();
-
-			return "<h1>Inserted Employee Data Successfully......</h1>";
-
-		} catch (Exception e) {
-			logger.error(e);
-			return "Exception occured " + e;
-		}
+		/*
+		 * try (Session session = factory.openSession()) {
+		 * System.out.println("Session Created"); Transaction tx =
+		 * session.beginTransaction();
+		 * 
+		 * Employee employeeInsert = new Employee();
+		 * 
+		 * employeeInsert.setName(name); employeeInsert.setemailid(emailid);
+		 * employeeInsert.setBonus(bonus);
+		 * employeeInsert.setDesignation(designation);
+		 * employeeInsert.setDoj(doj); employeeInsert.setEmployeeId(employeeId);
+		 * employeeInsert.setGrade(grade); employeeInsert.setSalary(salary);
+		 * 
+		 * Address addressInsert = new Address();
+		 * 
+		 * addressInsert.setDoorno(doorno); addressInsert.setState(state);
+		 * addressInsert.setStreetname(streetname);
+		 * 
+		 * List<Address> addressInsertList = new ArrayList<>();
+		 * employeeInsert.setAddress(addressInsertList);
+		 * 
+		 * session.persist(employeeInsert); tx.commit();
+		 * System.out.println("Commited"); return
+		 * "<h1>Inserted Employee Data Successfully......</h1>";
+		 * 
+		 * } catch (Exception e) { logger.error(e); return "Exception occured "
+		 * + e; }
+		 */
+		return "SUCCUESS";
 
 	}
 
