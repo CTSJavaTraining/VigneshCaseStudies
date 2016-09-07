@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,36 +19,36 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "employee1")
+@Table(name = "employee")
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id", length = 6)
 	private int employeeId;
 
-	@Column(name = "name", length = 35)
+	@Column(length = 35)
 	private String name;
 
-	@Column(name = "designation", length = 20)
+	@Column(length = 20)
 	private String designation;
 
-	@Column(name = "salary", length = 10)
+	@Column(length = 10)
 	private int salary;
 
-	@Column(name = "bonus", length = 10)
+	@Column(length = 10)
 	private int bonus;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "foreignId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "foreignId", fetch = FetchType.EAGER)
 	private List<Address> address;
 
-	@Column(name = "doj", length = 12)
+	@Column(length = 12)
 	private String doj;
 
-	@Column(name = "grade", length = 1)
+	@Column(length = 1)
 	private String grade;
 
-	@Column(name = "emailid", unique = true, length = 40)
+	@Column(unique = true, length = 40)
 	private String emailid;
 
 	/**

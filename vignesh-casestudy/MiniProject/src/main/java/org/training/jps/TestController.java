@@ -7,16 +7,16 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  * Test Controller
  * 
@@ -26,119 +26,61 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @ComponentScan
 @RestController
 @EnableAutoConfiguration
+@RequestMapping("/home")
 public class TestController {
 
-	private static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 	private static final Logger logger = Logger.getLogger(TestController.class);
+	public static final SessionFactory factory = Application.factoryBuilder();
 
-	Employee emp2 = new Employee();
-	String firstTag = "<br>";
-
-	@RequestMapping(name = "selectEmployee", value = "/getEmployee", method = RequestMethod.GET, produces = "text/html")
+	@SuppressWarnings("unchecked")
+	@RequestMapping(name = "selectEmployee", value = "/getEmployee", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String getEmployeeById(@RequestParam("id") int id) {
+	public List<Employee> getEmployeeById(@RequestParam("employeeid") int employeeid) {
 
+		System.out.println("Inside getEmployeeId");
 		try (Session session = factory.openSession()) {
 
-			String hql = "FROM Employee WHERE id = ?";
+			String hql = "FROM Employee WHERE employeeId = :eId";
 			Query query = session.createQuery(hql);
-			query.setParameter(0, id);
+			query.setParameter("eId", employeeid);
 
-			@SuppressWarnings("unchecked")
-			List<Employee> employeeResults = query.getResultList();
+			logger.debug("Getting Address by using Employee ID: " + employeeid);
 
-			StringBuilder sbEmployee = new StringBuilder();
-			employeeResults.forEach(employeeValue -> sbEmployee.append(employeeValue.getName()).append(firstTag));
-
-			logger.debug("Getting Employee by using ID");
-
-			return sbEmployee.toString();
+			return query.getResultList();
 
 		}
 
 	}
 
-	@RequestMapping(name = "selectAddress", value = "/getAddress", method = RequestMethod.GET, produces = "text/html")
+	@RequestMapping(name = "selectAddress", value = "/getAddress", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String getAddressById(@RequestParam("id") int id) {
+	public List<?> getAddressById(@RequestParam("addressID") int addressID) {
 
 		try (Session session = factory.openSession()) {
 
-			String hql = "FROM Address where id = ?";
+			String hql = "FROM Address where addressid = :aId";
 			Query query = session.createQuery(hql);
-			query.setParameter(0, id);
+			query.setParameter("aId", addressID);
 
-			@SuppressWarnings("unchecked")
-			List<Address> addressResults = query.getResultList();
+			logger.debug("Getting Address by using ID: " + addressID);
 
-			logger.debug("Getting Address by using ID");
-
-			StringBuilder sbAddress = new StringBuilder();
-
-			addressResults.forEach(addressType -> sbAddress.append(addressType.getDoorno()).append(firstTag)
-					.append(addressType.getState()).append(firstTag).append(addressType.getStreetname())
-					.append(firstTag).append(addressType.getState()));
-
-			return sbAddress.toString();
+			return query.getResultList();
 		}
 
 	}
 
-	@RequestMapping(value = "/putemployee", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/putemployee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String setEmployeeDetails(@RequestBody Employee e)
-	/*
-	 * @RequestParam("employeeId") int employeeId, @RequestParam("bonus") int
-	 * bonus,
-	 * 
-	 * @RequestParam("designation") String designation, @RequestParam("doj")
-	 * String doj,
-	 * 
-	 * @RequestParam("emailid") String emailid, @RequestParam("grade") String
-	 * grade,
-	 * 
-	 * @RequestParam("name") String name, @RequestParam("salary") int
-	 * salary, @RequestParam("doorno") int doorno,
-	 * 
-	 * @RequestParam("streetname") String streetname, @RequestParam("state")
-	 * String state
-	 */
-
-	{
-
-		System.out.println("Setting employee Details");
-		System.out.println(" EEE :: " + e.toString());
-
-		/*
-		 * try (Session session = factory.openSession()) {
-		 * System.out.println("Session Created"); Transaction tx =
-		 * session.beginTransaction();
-		 * 
-		 * Employee employeeInsert = new Employee();
-		 * 
-		 * employeeInsert.setName(name); employeeInsert.setemailid(emailid);
-		 * employeeInsert.setBonus(bonus);
-		 * employeeInsert.setDesignation(designation);
-		 * employeeInsert.setDoj(doj); employeeInsert.setEmployeeId(employeeId);
-		 * employeeInsert.setGrade(grade); employeeInsert.setSalary(salary);
-		 * 
-		 * Address addressInsert = new Address();
-		 * 
-		 * addressInsert.setDoorno(doorno); addressInsert.setState(state);
-		 * addressInsert.setStreetname(streetname);
-		 * 
-		 * List<Address> addressInsertList = new ArrayList<>();
-		 * employeeInsert.setAddress(addressInsertList);
-		 * 
-		 * session.persist(employeeInsert); tx.commit();
-		 * System.out.println("Commited"); return
-		 * "<h1>Inserted Employee Data Successfully......</h1>";
-		 * 
-		 * } catch (Exception e) { logger.error(e); return "Exception occured "
-		 * + e; }
-		 */
-		return "SUCCUESS";
-
+	public void setEmployeeDetails(@RequestBody Employee e) {
+		try (Session session = factory.openSession()) {
+			session.beginTransaction();
+			List<Address> address = e.getAddress();
+			for (Address address2 : address) {
+				address2.setForeignId(e);
+			}
+			
+			session.persist(e);			
+			session.getTransaction().commit();
+		}
 	}
-
 }

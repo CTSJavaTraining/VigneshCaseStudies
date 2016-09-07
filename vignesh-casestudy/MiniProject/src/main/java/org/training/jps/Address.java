@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Address POJO class
  * 
@@ -16,25 +18,26 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "address1")
+@Table(name = "address")
 public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "addressid")
+	@Column(length = 6)
 	private int addressid;
 
 	@ManyToOne
 	@JoinColumn(name = "id")
+	@JsonIgnore
 	private Employee foreignId;
 
-	@Column(name = "doorno", length = 4)
+	@Column(length = 4)
 	private int doorno;
 
-	@Column(name = "streetname", length = 50)
+	@Column(length = 50)
 	private String streetname;
 
-	@Column(name = "state", length = 25)
+	@Column(length = 25)
 	private String state;
 
 	/**

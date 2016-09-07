@@ -21,7 +21,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @SpringBootApplication
 public class Application {
 
-	private static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 	private static final Logger logger = Logger.getLogger(Application.class);
 
 	/**
@@ -44,11 +43,12 @@ public class Application {
 		System.out.println(
 				"*****************************************************************************************************************************************************");
 		ApplicationContext contextXml = new ClassPathXmlApplicationContext("applicationContext.xml");
+		SessionFactory factory = factoryBuilder();
 		try (Session session = factory.openSession()) {
-			
-			AOPTester aopT=new AOPTester();
+
+			AOPTester aopT = new AOPTester();
 			aopT.addPerson();
-			
+
 			Transaction tx = session.beginTransaction();
 
 			Employee emp1 = (Employee) contextXml.getBean("insertIntoEmployee");
@@ -65,13 +65,6 @@ public class Application {
 
 			tx.commit();
 
-			/*
-			 * System.out.println(emp1.getName());
-			 * System.out.println(emp1.getBonus());
-			 * 
-			 * System.out.println("Name : " + emp1.getName());
-			 */
-
 		} catch (Exception e) {
 			logger.error("Exception in main" + e);
 		} finally {
@@ -79,4 +72,9 @@ public class Application {
 		}
 
 	}
+
+	public static SessionFactory factoryBuilder() {
+		return new Configuration().configure().buildSessionFactory();
+	}
+
 }
