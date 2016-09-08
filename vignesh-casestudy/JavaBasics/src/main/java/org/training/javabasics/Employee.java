@@ -15,7 +15,7 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static String name;
+	private String name;
 	private int id;
 	private transient int salary;
 
@@ -33,7 +33,7 @@ public class Employee implements Serializable {
 	}
 
 	public void setName(String name) {
-		Employee.name = name;
+		this.name = name;
 	}
 
 	public int getId() {

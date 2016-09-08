@@ -18,11 +18,7 @@
 		<property name="grade" value="A" />
 		<property name="name" value="TESTER SPRING" />
 		<property name="salary" value="35000" />
-	<!-- <constructor-arg type="String" value="Vignesh" /> <constructor-arg 
-		type="String" value="PA" /> <constructor-arg type="int" value="20000" /> 
-		<constructor-arg type="int" value="5000" /> <constructor-arg type="String" 
-		value="20 Julys" /> <constructor-arg type="String" value="A" /> <constructor-arg 
-		type="String" value="REsttest.g@gmail.com" /> -->
+
 		<!-- Constructor Injection -->
 		<!-- <constructor-arg value="Vignesh I am doing spring" type="java.lang.String"></constructor-arg> -->
 	</bean>
@@ -46,7 +42,8 @@
 		<!-- Constructor Injection -->
 		<!-- <constructor-arg value="Vignesh I am doing spring" type="java.lang.String"></constructor-arg> -->
 	</bean>
+	<bean id="AopTest" class="org.training.jps.AOPTester" />
+	<bean id="LoggingAOP" class="org.training.jps.AOPLogging" />
 
-	<bean id="LoggingAOP" class="org.training.jps.AOPLogging"/>
 
 </beans>

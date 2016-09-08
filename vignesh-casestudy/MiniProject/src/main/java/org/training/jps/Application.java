@@ -12,19 +12,18 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Main class for check set and get method of employee and address
+ * Spring boot application and using of rest services, Hibernate ORM.
  * 
  * @author 447482
  *
  */
-
 @SpringBootApplication
 public class Application {
 
 	private static final Logger logger = Logger.getLogger(Application.class);
 
 	/**
-	 * CRUD Operation is performed from here
+	 * Main method for mini project application.
 	 * 
 	 * @param args
 	 */
@@ -38,16 +37,19 @@ public class Application {
 
 	}
 
+	/**
+	 * Method: Loads default employee and address details into DB using spring
+	 * application context xml
+	 */
 	public static void insertorUsingSetter() {
 
-		System.out.println(
-				"*****************************************************************************************************************************************************");
 		ApplicationContext contextXml = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+		AOPTester aopt = (AOPTester) contextXml.getBean("AopTest");
+		aopt.addPerson();
+
 		SessionFactory factory = factoryBuilder();
 		try (Session session = factory.openSession()) {
-
-			AOPTester aopT = new AOPTester();
-			aopT.addPerson();
 
 			Transaction tx = session.beginTransaction();
 
@@ -73,6 +75,11 @@ public class Application {
 
 	}
 
+	/**
+	 * Utility method for reusing SessionFactory
+	 * 
+	 * @return SessionFactory
+	 */
 	public static SessionFactory factoryBuilder() {
 		return new Configuration().configure().buildSessionFactory();
 	}

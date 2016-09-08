@@ -39,7 +39,7 @@ public class Employee {
 	@Column(length = 10)
 	private int bonus;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "foreignId", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "foreignId", fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Address> address;
 
 	@Column(length = 12)

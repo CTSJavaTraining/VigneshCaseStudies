@@ -2,6 +2,7 @@ package org.training.jps;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Address {
 	private int addressid;
 
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "id", foreignKey = @ForeignKey(name = "CHILD_EMPLOYEE_FK"))
 	@JsonIgnore
 	private Employee foreignId;
 
